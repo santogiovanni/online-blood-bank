@@ -22,10 +22,16 @@ This cloud-based application will serve as a repository for different patient bl
 
 * Reporting module --> responsible for the analytics of the blood inventory (e.g., generates donor, appointment, and inventory reports).
 
-### Estimated languages and frameworks:
+### Estimated Languages and Frameworks:
+* Frontend language --> HTML, CSS, JavaScript to build UI. Not sure whether to incorporate a frontend framework such as React for a more interactive UI.
 
+* Backend language --> most likely Python to build the application server
+
+* Database Module --> one of the following three databases: MySQL, PostgreSQL, or MongoDB
+
+* Containerization Module --> Use Docker to build and package container images
+
+* Kubernetes Module --> Use kubectl to deploy and manage Kubernetes-based application
 
 ### General description of the UI with the primary actions:
-
-
-
+The user interface will allow users to search for their ideal blood donor, filter their searches based on blood type and location availability, and schedule appointments.
