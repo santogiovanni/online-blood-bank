@@ -1,8 +1,18 @@
 # online-blood-bank
 
-### Statement of the project application nature and purpose
-### Statement of team members that may be just yourself or with a partner
-### Statement of the estimated modules
-### Statement of the estimated languages and frameworks
-### General description of the UI with the primary actions
-### Expect all of the above to change and evolve, this is just to kickstart.
+### Author: Stephen Antogiovanni
+
+### Project Name: Online Blood Bank System Hosted on Kubernetes
+
+### Project Description:
+#### This cloud-based application will serve as a repository for different patient blood types and will include information about donors (name and specific blood type information). The purpose of this application will be to maximize efficiency to accessing blood during a potential emergency. The cloud will host blood type information, storage data about such blood, the availability of each blood type (either A+, B+, AB+, or O-) in a specific geographical area. The purpose of this web-based application will be so that each patient can have insight into their potential donor's blood donation history and the results produced by the donor's blood.
+
+### Estimated Modules:
+
+### Estimated languages and frameworks:
+
+
+### General description of the UI with the primary actions:
+
+
+
