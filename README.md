@@ -25,5 +25,5 @@ This cloud-based application will serve as a repository for different patient bl
 
 * Kubernetes Module --> Use kubectl to deploy and manage Kubernetes-based application
 
-### General description of the UI with the primary actions:
-The user interface will allow users to search for their ideal blood donor, filter their searches based on blood type and location availability, and schedule appointments.
+### General description of this proof of concept:
+Postman and curl commands will be used to show intra microservice communication (blood pushes and pulls) and will demonstrate use of approved and rejected transactions between the donation center and blood bank (blood push), as well as between the hospital and blood bank (blood pull).
