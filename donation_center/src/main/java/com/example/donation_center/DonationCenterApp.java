@@ -1,4 +1,4 @@
-package com.example.blood_donation_microservice;
+package com.example.donation_center;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

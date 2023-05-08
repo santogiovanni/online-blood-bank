@@ -1,4 +1,4 @@
-package com.example.blood_donation_microservice.entities;
+package com.example.donation_center.entities;
 
 public @interface Valid {
 
