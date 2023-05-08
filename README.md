@@ -19,8 +19,6 @@ This cloud-based application will serve as a repository for different patient bl
 
 * Backend language --> Java to build the application server
 
-* Database Module --> H2 Database
-
 * Containerization Module --> Use Docker to build and package container images
 
 * Kubernetes Module --> Use kubectl to deploy and manage Kubernetes-based application
