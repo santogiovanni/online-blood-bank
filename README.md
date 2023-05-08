@@ -1,10 +1,10 @@
-![IMG_3753](https://user-images.githubusercontent.com/106194360/236821880-f2d11fd5-c83e-4bbc-9379-dc358bb2c9b9.jpg)
-
 # online-blood-bank
 
 ### Author: Stephen Antogiovanni
 
 ### Project Name: Online Blood Bank System Hosted on Kubernetes
+
+![IMG_3753](https://user-images.githubusercontent.com/106194360/236821880-f2d11fd5-c83e-4bbc-9379-dc358bb2c9b9.jpg)
 
 ### Project Description:
 This cloud-based application will serve as a repository for different patient blood types and will include information about donors (name and specific blood type information). The purpose of this application will be to maximize efficiency to accessing blood during a potential emergency. The cloud will host blood type information, storage data about such blood, the availability of each blood type (either A+, B+, AB+, or O-). The purpose of this web-based application will be so that each patient can have insight into their potential donor's blood donation history and the results produced by the donor's blood.
