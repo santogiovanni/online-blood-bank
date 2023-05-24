@@ -1,10 +1,10 @@
-package com.example.blood_request_microservice;
+package com.example.blood_bank;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BloodRequestMicroserviceApplicationTests {
+class BloodBankAppTests {
 
 	@Test
 	void contextLoads() {

@@ -17,8 +17,7 @@ public class Controller {
     private List<Blood> bank = new ArrayList<>();
 
     /**
-     * 
-     * @return
+     * @return returns current inventory of blood units in blood bank
      */
     @GetMapping("/bank")
     public List<Blood> getBlood() {
@@ -34,6 +33,7 @@ public class Controller {
     }
 
     /**
+     * adds unit of blood to bank
      * 
      * @param blood
      * @return
@@ -46,23 +46,25 @@ public class Controller {
     }
 
     /**
+     * removes blood from blood bank
      * 
      * @param bloodType
-     * @return
+     * @return returns list of removed blood types from blood bank
      */
-    @GetMapping("/removeblood/{bloodtype}")
-    public ResponseEntity<Blood> removeBlood(@PathVariable(value = "bloodtype") String bloodType) {
+    @DeleteMapping("/removeblood/{bloodtype}")
+    public Blood[] removeBlood(@PathVariable("bloodtype") String bloodType) {
+
+        List<Blood> removedBloodTypes = new ArrayList<>();
 
         for (Blood bloodUnit : bank) {
 
             if (bloodUnit.getBloodType().equals(bloodType)) {
-
-                bank.remove(bloodUnit);
-                return ResponseEntity.ok(bloodUnit);
-
+                removedBloodTypes.add(bloodUnit);
             }
         }
-        return ResponseEntity.notFound().build();
-    }
 
+        bank.removeAll(removedBloodTypes);
+
+        return removedBloodTypes.toArray(new Blood[0]);
+    }
 }
