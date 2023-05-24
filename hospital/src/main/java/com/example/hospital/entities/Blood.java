@@ -16,6 +16,11 @@ public class Blood {
         this.donationCenterID = donationCenterID;
     }
 
+    public Blood(String bloodType, Integer donationCenterID) {
+        this.bloodType = bloodType;
+        this.donationCenterID = donationCenterID;
+    }
+
     public String getBloodType() {
         return bloodType;
     }

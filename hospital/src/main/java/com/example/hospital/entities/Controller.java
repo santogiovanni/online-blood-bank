@@ -1,14 +1,17 @@
 package com.example.hospital.entities;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
@@ -17,8 +20,7 @@ public class Controller {
     private List<Blood> hospitalInventory = new ArrayList<>();
 
     /**
-     * 
-     * @return
+     * @return returns current inventory of hospital blood units
      */
     @GetMapping("/hospital")
     public List<Blood> getBlood() {
@@ -26,44 +28,55 @@ public class Controller {
     }
 
     /**
+     * pulls units of blood by bloodtype from blood bank to hospital
      * 
+     * @param blood unit of blood via bloodType
      * @return
      */
-    @DeleteMapping(value = "/pullblood/{bloodtype}")
-    public ResponseEntity<String> pullBloodType(@PathVariable(value = "bloodtype") String bloodType) {
+    @DeleteMapping(value = "/pullBlood")
+    public ResponseEntity<String> pullBloodType(@RequestParam("bloodtype") String bloodType) {
 
-        Blood blood = pullBlood(bloodType);
+        Blood[] pulledBlood = pullBlood(bloodType);
 
-        if (blood == null) {
+        if (pulledBlood == null || pulledBlood.length == 0) {
             return ResponseEntity.badRequest()
-                    .body("There is no blood of " + bloodType + " blood type available in this donation center.");
+                    .body("There is no blood of " + bloodType + " blood type available in this blood bank.");
         }
 
-        hospitalInventory.add(blood);
-        return ResponseEntity.ok(blood.getBloodType() + " blood type has been pulled from blood bank to hospital.");
+        hospitalInventory.addAll(Arrays.asList(pulledBlood));
+
+        return ResponseEntity.ok(bloodType + " blood type has been pulled from blood bank to hospital.");
+    }
+
+    private static String getEnv(String variableName, String defaultValue) {
+        String value = System.getenv(variableName);
+        return (value == null) ? defaultValue : value;
     }
 
     /**
-     * pushes unit of blood to blood bank after an appointment is made
-     * To-Do:
+     * pulls units of blood from blood bank to hospital via exchange rest template
      * 
-     * @param blood unit of blood
+     * @param blood unit of blood via bloodType
+     * @return
      */
-    private Blood pullBlood(String bloodType) {
+    private Blood[] pullBlood(String bloodType) {
 
-        String host = System.getProperty("BLOOD_BANK_SERVICE", "localhost");
+        String host = getEnv("BLOOD_BANK_SERVICE_HOST", "localhost");
         String port = System.getProperty("BLOOD_BANK_PORT", "8081");
         String url = "http://" + host + ":" + port + "/removeblood/" + bloodType;
         RestTemplate restTemplate = new RestTemplate();
-        Blood blood = null;
+
         try {
-
-            blood = restTemplate.getForObject(url, Blood.class);
-        } catch (final HttpClientErrorException e) {
-
-            System.out.println("Blood of " + bloodType + " doesn't exist in blood bank; returning null.");
+            ResponseEntity<Blood[]> response = restTemplate.exchange(url, HttpMethod.DELETE, null, Blood[].class);
+            if (response.getStatusCode() == HttpStatus.OK) {
+                return response.getBody();
+            }
+        } catch (RestClientException e) {
+            // Handle any exceptions or error responses from the blood bank service
+            e.printStackTrace();
         }
 
-        return blood;
+        return null; // Blood not found or request failed
     }
+
 }
