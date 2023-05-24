@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class Controller {
 
-    private List<Schedule> schedules = ApptRandomizer.generateRandomAppts(10);
+    private List<Schedule> schedules = ApptRandomizer.generateRandomAppts(30);
 
     /**
      * @return returns a list of all current appointments
@@ -39,6 +39,10 @@ public class Controller {
         return getSchedule(id);
     }
 
+    /**
+     * @param id ID of a specific donor
+     * @return returns specific schedule by appt ID lookup
+     */
     private Schedule getSchedule(int id) {
         for (Schedule appt : schedules) {
 
@@ -50,18 +54,19 @@ public class Controller {
     }
 
     /**
+     * @param String bloodType
      * @return returns list of all appointments for a specific bloodtype
      */
-    @GetMapping("/blood-appts/{bloodtype}")
-    public List<Blood> getBloodSchedules(@PathVariable("bloodtype") String bloodType) {
+    @GetMapping("/blood-schedules/{bloodtype}")
+    public List<Schedule> getBloodSchedules(@PathVariable("bloodtype") String bloodType) {
 
-        List<Blood> bloodSchedulesByBloodType = new ArrayList<>();
+        List<Schedule> bloodSchedulesByBloodType = new ArrayList<>();
 
         for (Schedule appt : schedules) {
 
             if (appt.getBloodType().equals(bloodType)) {
 
-                bloodSchedulesByBloodType.add(new Blood(appt.getBloodType(), appt.getId(), 1));
+                bloodSchedulesByBloodType.add(appt);
             }
         }
 
@@ -76,9 +81,10 @@ public class Controller {
     @DeleteMapping("/remove-appt/{id}")
     public void deleteAppointment(@PathVariable("id") int id) {
 
-        Schedule schedule = getSchedule(id);
-        if (schedule != null) {
-            schedules.remove(schedule);
+        Schedule removed_schedule = getAppointment(id);
+
+        if (removed_schedule != null) {
+            schedules.remove(removed_schedule);
         }
     }
 
@@ -86,10 +92,10 @@ public class Controller {
      * creates a new blood appointment
      * 
      * @param donor donor information parameters
-     * @return
+     * @return returns response entity of schedule class
      */
     @PostMapping("/create-appt")
-    public ResponseEntity<Schedule> createAppointment(@Valid @RequestBody Schedule appt) {
+    public ResponseEntity<Schedule> createAppointment(@RequestBody Schedule appt) {
 
         schedules.add(appt);
         return ResponseEntity.ok(appt);
@@ -98,11 +104,11 @@ public class Controller {
     /**
      * creates a new blood appointment and pushes blood to blood bank simultaneously
      * 
-     * @param donor donor information parameters
-     * @return
+     * @param appt all Schedule class variables
+     * @return returns response entity of schedule class
      */
     @PostMapping("/create-appt-and-push-blood")
-    public ResponseEntity<Schedule> createAppointmentAndPushBlood(@Valid @RequestBody Schedule appt) {
+    public ResponseEntity<Schedule> createAppointmentAndPushBlood(@RequestBody Schedule appt) {
 
         schedules.add(appt);
         pushBlood(new Blood(appt.getBloodType(), appt.getId(), 1));
@@ -110,16 +116,15 @@ public class Controller {
     }
 
     /**
-     * @param id           donor ID
-     * @param donorDetails all appointment parameters that would like to be updated
-     *                     for existing appointment
-     * @return
+     * @param id   donor ID
+     * @param appt all Schedule class variables that would like to be updated for
+     *             existing appointment
+     * @return returns response entity of schedule class
      */
     @PutMapping("/update-appt/{id}")
     public ResponseEntity<Schedule> updateAppointment(@PathVariable("id") int id, @RequestBody Schedule appt) {
 
-        Schedule updatedAppt = ((Controller) schedules).getAppointment(id)
-                .orElseThrow();
+        Schedule updatedAppt = getAppointment(id);
 
         updatedAppt.setName(appt.getName());
         updatedAppt.setBloodType(appt.getBloodType());
@@ -138,9 +143,8 @@ public class Controller {
     }
 
     /**
-     * 
      * @param schedule
-     * @return
+     * @return returns index of specific appointment
      */
     private int getApptIndex(Schedule schedule) {
         for (int i = 0; i < schedules.size(); i++) {
@@ -152,21 +156,24 @@ public class Controller {
     }
 
     /**
+     * pushes key attributes of donation object to blood bank as a blood unit
      * 
-     * @return
+     * @param bloodType
+     * @return returns response entity of String
      */
     @PostMapping("/pushBlood")
     public ResponseEntity<String> pushBloodType(@RequestParam("bloodtype") String bloodType) {
 
-        List<Blood> bloodSchedulesByBloodType = getBloodSchedules(bloodType);
+        List<Schedule> bloodSchedulesByBloodType = getBloodSchedules(bloodType);
 
         if (bloodSchedulesByBloodType == null) {
             return ResponseEntity.badRequest()
                     .body("There is no blood of " + bloodType + " blood type available in this donation center.");
         }
 
-        for (Blood bloodUnit : bloodSchedulesByBloodType) {
-            pushBlood(bloodUnit);
+        for (Schedule bloodSchedule : bloodSchedulesByBloodType) {
+
+            pushBlood(new Blood(bloodSchedule.getBloodType(), bloodSchedule.getId(), 1));
 
         }
 
@@ -175,9 +182,20 @@ public class Controller {
         return ResponseEntity.ok(bloodType + " blood type has been pushed from donation center to blood bank.");
     }
 
+    private static String getEnv(String variableName, String defaultValue) {
+        String value = System.getenv(variableName);
+        return (value == null) ? defaultValue : value;
+    }
+
+    /**
+     * pushes units of blood from donation center to blood bank via rest template
+     * 
+     * @param blood Blood object
+     * @return returns blood object
+     */
     private Blood pushBlood(Blood blood) {
 
-        String host = System.getProperty("BLOOD_BANK_SERVICE", "localhost");
+        String host = getEnv("BLOOD_BANK_SERVICE_HOST", "localhost");
         String port = System.getProperty("BLOOD_BANK_PORT", "8081");
         String url = "http://" + host + ":" + port + "/addblood";
         RestTemplate restTemplate = new RestTemplate();

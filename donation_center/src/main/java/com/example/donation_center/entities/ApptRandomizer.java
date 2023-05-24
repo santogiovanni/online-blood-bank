@@ -16,8 +16,7 @@ public class ApptRandomizer {
             "Green", "Baker", "Adams", "Nelson", "Carter", "Mitchell", "Perez" };
 
     /**
-     * 
-     * @return
+     * @return returns string of random dates for blood appointments
      */
     private static String generateRandomDate() {
         int year = 2023;
@@ -28,8 +27,7 @@ public class ApptRandomizer {
     }
 
     /**
-     * 
-     * @return
+     * @return returns string of string times for blood appointments
      */
     private static String generateRandomTime() {
 
@@ -48,8 +46,7 @@ public class ApptRandomizer {
     }
 
     /**
-     * 
-     * @return
+     * @return returns string of random names for blood appointments
      */
     public static String generateName() {
 
@@ -59,8 +56,7 @@ public class ApptRandomizer {
     }
 
     /**
-     * 
-     * @return
+     * @return returns a list of schedule objects for random blood appointments
      */
     public static List<Schedule> generateRandomAppts(int numAppts) {
 

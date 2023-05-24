@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Schedule {
 
-    // add a comment about age, weight, email
+    // age, weight, email not needed for the scope of this project
     private Integer id;
     private String name;
     private String bloodtype;
