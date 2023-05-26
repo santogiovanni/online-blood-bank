@@ -51,7 +51,7 @@ Postman will be used to show intra microservice communication (blood pushes and 
 * To get a specific blood schedule via id, run with id as any integer (GET call in Postman)
 * ```http://localhost:8080/blood-appts/{id}```
 
-* To get all the blood schedules sorted by bloodtype, run (GET call in Postman)
+* To get all the blood schedules sorted by blood type, run (GET call in Postman)
 * ```http://localhost:8080/blood-schedules/{bloodtype}```
 
 * To remove a specific appointment via id, run (DELETE call in Postman)
@@ -80,11 +80,11 @@ Postman will be used to show intra microservice communication (blood pushes and 
 
 ![Screen Shot 2023-05-25 at 10 04 37 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/a4212d01-30fa-48d8-8b37-d08ea9b2b1af)
 
-* To push a unit of blood via bloodtype, run (POST call in Postman)
+* To push a unit of blood via blood type, run (POST call in Postman)
 
 * ```http://localhost:8080/pushBlood```
 
-* Follow example below and enter any bloodtype that was previously randomly generated in donation center schedules
+* Follow example below and enter any blood type that was previously randomly generated in donation center schedules
 
 ![Screen Shot 2023-05-25 at 10 05 45 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/009e1744-995e-4074-92e8-7295909cfbbf)
 
@@ -94,9 +94,9 @@ Postman will be used to show intra microservice communication (blood pushes and 
 * To clear the inventory of blood units in the blood bank, run (DELETE call in Postman)
 * ```http://localhost:8081/clearbank```
 
-* To pull all blood units to the hospital via bloodtypes available in the blood bank, run (DELETE call in Postman)
+* To pull all blood units to the hospital via blood types available in the blood bank, run (DELETE call in Postman)
 * ```http://localhost:8082/pullBlood```
-* Follow example below and enter any bloodtype in which that blood unit(s) was previously pushed to blood bank
+* Follow example below and enter any blood type in which that blood unit(s) was previously pushed to blood bank
 
 * ![Screen Shot 2023-05-25 at 10 13 22 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/0b6a2cd0-c883-48f4-9cb5-784503445b4c)
 
