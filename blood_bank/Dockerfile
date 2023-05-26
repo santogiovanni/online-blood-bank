@@ -1,4 +1,4 @@
 FROM openjdk:17
-COPY target/blood-bank-0.0.1-SNAPSHOT.jar demo2.jar
+COPY build/libs/blood_bank-0.0.1-SNAPSHOT.jar blood_bank.jar
 EXPOSE 8081
-CMD ["java", "-jar", "demo2.jar"]
+CMD ["java", "-jar", "blood_bank.jar"]
