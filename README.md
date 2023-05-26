@@ -27,3 +27,15 @@ This cloud-based application will serve as a repository for different patient bl
 
 ### General description of this proof of concept:
 Postman will be used to show intra microservice communication (blood pushes and pulls) and will demonstrate use of approved and rejected transactions between the donation center and blood bank (blood push), as well as between the hospital and blood bank (blood pull).
+
+### How to Run Application on Localhost:
+* Clone github repository
+
+* '''cd donation_center'''
+* cd blood_bank
+* cd hospital
+
+* For each microservice, run
+* ./gradlew bootRun
+
+* 
