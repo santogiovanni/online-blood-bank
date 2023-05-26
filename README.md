@@ -141,11 +141,15 @@ Postman will be used to show intra microservice communication (blood pushes and 
 ![Screen Shot 2023-05-25 at 10 24 40 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/c86f408c-28fa-44a0-9b6b-ccd7392a7475)
 
 * To test all REST calls, implement the same instructions as above for localhost on Postman
-* However, replace port 8080 with 31000
-* Replace port 8081 with 31001
-* Replace port 8082 with 31002
-* Follow the examples below with the same REST calls
+
+* However, replace port 8080 with 31000 (follow example below)
 
 ![Screen Shot 2023-05-25 at 10 25 58 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/d35020f0-c7e8-4742-95c0-05b422ce509c)
+
+* Replace port 8081 with 31001 (follow example below)
+
 ![Screen Shot 2023-05-25 at 10 26 21 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/181f7c98-7578-4c74-8251-998cbdc55d28)
-![Screen Shot 2023-05-25 at 10 26 53 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/f8868f84-be4f-4266-80dd-d491b4419e81)
+
+* Replace port 8082 with 31002
+
+![Screen Shot 2023-05-25 at 10 26 53 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/f8868f84-be4f-4266-80dd-d491b4419e81) 
