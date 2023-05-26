@@ -111,20 +111,20 @@ Postman will be used to show intra microservice communication (blood pushes and 
 * ```cd donation_center```
 * ```./gradlew build```
 * ```./gradlew bootRun```
-* ```docker build -t {Docker Desktop Username}/donation_center:v1 .```
-* ```docker push {Docker Desktop Username}/donation_center:v1```
+* ```docker build -t {DockerDesktopUsername}/donation_center:v1 .```
+* ```docker push {DockerDesktopUsername}/donation_center:v1```
 
 * ```cd blood_bank```
 * ```./gradlew build```
 * ```./gradlew bootRun```
-* ```docker build -t {Docker Desktop Username}/blood_bank:v1 .```
-* ```docker push {Docker Desktop Username}/blood_bank:v1```
+* ```docker build -t {DockerDesktopUsername}/blood_bank:v1 .```
+* ```docker push {DockerDesktopUsername}/blood_bank:v1```
 
 * ```cd hospital```
 * ```./gradlew build```
 * ```./gradlew bootRun```
-* ```docker build -t {Docker Desktop Username}/hospital:v1 .```
-* ```docker push {Docker Desktop Username}/hospital:v1```
+* ```docker build -t {DockerDesktopUsername}/hospital:v1 .```
+* ```docker push {DockerDesktopUsername}/hospital:v1```
 
 * ```cd k8s```
 * ```kubectl apply -f configmap.yaml```
