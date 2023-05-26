@@ -7,7 +7,7 @@
 ![IMG_3753](https://user-images.githubusercontent.com/106194360/236821880-f2d11fd5-c83e-4bbc-9379-dc358bb2c9b9.jpg)
 
 ### Project Description:
-This cloud-based application will serve as a repository for different patient blood types and will include information about donors (name and specific blood type information). The purpose of this application will be to maximize efficiency to accessing blood during a potential emergency. The cloud will host blood type information, storage data about such blood, the availability of each blood type (either A+, B+, AB+, or O-). The purpose of this web-based application will be so that each patient can have insight into their potential donor's blood donation history and the results produced by the donor's blood.
+This cloud-based application will serve as a repository for different patient blood types and will include information about donors (name and specific blood type information). The purpose of this application will be to maximize efficiency to accessing blood during a potential emergency. The cloud will host blood type information, storage data about such blood, the availability of each blood type (either A+/A-, B+/B-, AB+/AB-, or O+/O-). The purpose of this web-based application will be so that each patient can have insight into their potential donor's blood donation history and the results produced by the donor's blood.
 
 ### 3 Estimated Modules (each serves as its own microservice):
 
@@ -26,4 +26,4 @@ This cloud-based application will serve as a repository for different patient bl
 * Kubernetes Module --> Use kubectl to deploy and manage Kubernetes-based application
 
 ### General description of this proof of concept:
-Postman and curl commands will be used to show intra microservice communication (blood pushes and pulls) and will demonstrate use of approved and rejected transactions between the donation center and blood bank (blood push), as well as between the hospital and blood bank (blood pull).
+Postman will be used to show intra microservice communication (blood pushes and pulls) and will demonstrate use of approved and rejected transactions between the donation center and blood bank (blood push), as well as between the hospital and blood bank (blood pull).
