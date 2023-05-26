@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: application-context
+data:
+  blood_bank_host: blood-bank-service
+  blood_bank_port: "81"

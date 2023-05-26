@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: donation-center-deployment
+  labels:
+    app.kubernetes.io/name: donation-center
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: donation-center
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: donation-center
+    spec:
+      containers:
+      - name: donation-center-image
+        image: santogiovanni/donation_center:v3
+        resources:
+          requests:
+            memory: "200Mi"
+          limits:
+            memory: "200Mi"
+        ports:
+        - containerPort: 8080
+        env:
+        - name: BLOOD_BANK_SERVICE_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: application-context
+              key: blood_bank_host
+        - name: BLOOD_BANK_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: application-context
+              key: blood_bank_port
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: donation-center-service
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: donation-center
+  ports:
+      # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
+    - port: 80
+      targetPort: 8080
+      nodePort: 31000

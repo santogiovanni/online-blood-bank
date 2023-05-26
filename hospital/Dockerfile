@@ -1,4 +1,4 @@
 FROM openjdk:17
-COPY target/hospital-0.0.1-SNAPSHOT.jar demo3.jar
+COPY build/libs/hospital-0.0.1-SNAPSHOT.jar hospital.jar
 EXPOSE 8082
-CMD ["java", "-jar", "demo3.jar"]
+CMD ["java", "-jar", "hospital.jar"]

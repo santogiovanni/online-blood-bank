@@ -62,7 +62,7 @@ public class Controller {
     private Blood[] pullBlood(String bloodType) {
 
         String host = getEnv("BLOOD_BANK_SERVICE_HOST", "localhost");
-        String port = System.getProperty("BLOOD_BANK_PORT", "8081");
+        String port = getEnv("BLOOD_BANK_PORT", "8081");
         String url = "http://" + host + ":" + port + "/removeblood/" + bloodType;
         RestTemplate restTemplate = new RestTemplate();
 
