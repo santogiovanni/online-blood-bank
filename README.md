@@ -32,11 +32,14 @@ Postman will be used to show intra microservice communication (blood pushes and 
 * Clone github repository by running in terminal
 * ```git clone https://github.com/santogiovanni/online-blood-bank.git```
 
+* For each microservice folder, run
 * ```cd donation_center```
-* ```cd blood_bank```
-* ```cd hospital```
+* ```./gradlew bootRun```
 
-* For each microservice, run
+* ```cd blood_bank```
+* ```./gradlew bootRun```
+
+* ```cd hospital```
 * ```./gradlew bootRun```
 
 * Once donation_center microservice is up and running, run
