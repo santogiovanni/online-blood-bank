@@ -101,6 +101,7 @@ Postman will be used to show intra microservice communication (blood pushes and 
 ![Screen Shot 2023-05-25 at 10 13 22 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/0b6a2cd0-c883-48f4-9cb5-784503445b4c)
 
 * To see the inventory of blood units in the hospital, run (GET call in Postman)
+
 * ```http://localhost:8082/hospital```
 
 ### How to Run Application on Kubernetes:
