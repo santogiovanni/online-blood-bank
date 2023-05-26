@@ -73,13 +73,17 @@ Postman will be used to show intra microservice communication (blood pushes and 
 ![Screen Shot 2023-05-25 at 10 02 09 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/fbf69914-d5be-4e68-9df4-5a466393c0c8)
 
 * To update an existing specific appointment via id, run (PUT call in Postman)
+
 * ```http://localhost:8080/update-appt/{id}```
+
 * Follow example below to manually insert raw JSON data
 
 ![Screen Shot 2023-05-25 at 10 04 37 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/a4212d01-30fa-48d8-8b37-d08ea9b2b1af)
 
 * To push a unit of blood via bloodtype, run (POST call in Postman)
+
 * ```http://localhost:8080/pushBlood```
+
 * Follow example below and enter any bloodtype that was previously randomly generated in donation center schedules
 
 ![Screen Shot 2023-05-25 at 10 05 45 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/009e1744-995e-4074-92e8-7295909cfbbf)
