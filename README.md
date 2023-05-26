@@ -36,14 +36,11 @@ Postman will be used to show intra microservice communication (blood pushes and 
 * ```cd donation_center```
 * ```./gradlew bootRun```
 
-
 * ```cd blood_bank```
 * ```./gradlew bootRun```
 
-
 * ```cd hospital```
 * ```./gradlew bootRun```
-
 
 * Once donation_center microservice is up and running, run
 * ```http://localhost:8080/blood-appts```
