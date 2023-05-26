@@ -65,7 +65,9 @@ Postman will be used to show intra microservice communication (blood pushes and 
 
 
 * To simulatenously create an appointment and push the blood unit, run (POST call in Postman)
+
 * ```http://localhost:8080/create-appt-and-push-blood```
+
 * Follow example below to manually insert raw JSON data
 
 ![Screen Shot 2023-05-25 at 10 02 09 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/fbf69914-d5be-4e68-9df4-5a466393c0c8)
