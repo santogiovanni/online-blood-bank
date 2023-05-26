@@ -41,11 +41,10 @@ Postman will be used to show intra microservice communication (blood pushes and 
 * Once donation_center microservice is up and running, run
 * ```http://localhost:8080/blood-appts```
 * in either localhost browser or on Postman 
-
 ![Screen Shot 2023-05-25 at 9 57 12 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/6a57068c-13e7-4927-b2e9-83de9ea0cfa5)
 
 * To get a specific blood schedule via id, run with id as any integer
-* ```http://localhost:8080/blood-appts{id}```
+* ```http://localhost:8080/blood-appts/{id}```
 
 * To get all the blood schedules sorted by bloodtype, run
 * ```http://localhost:8080/blood-schedules/{bloodtype}```
@@ -56,16 +55,71 @@ Postman will be used to show intra microservice communication (blood pushes and 
 * To simulatenously create an appointment and push the blood unit, run
 * ```http://localhost:8080/create-appt-and-push-blood```
 * Follow example below to manually insert raw JSON data
-* ![Screen Shot 2023-05-25 at 10 02 09 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/fbf69914-d5be-4e68-9df4-5a466393c0c8)
+![Screen Shot 2023-05-25 at 10 02 09 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/fbf69914-d5be-4e68-9df4-5a466393c0c8)
 
 * To update an existing specific appointment via id, run
 * ```http://localhost:8080/update-appt/{id}```
 * Follow example below to manually insert raw JSON data
-* ![Screen Shot 2023-05-25 at 10 04 37 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/a4212d01-30fa-48d8-8b37-d08ea9b2b1af)
+![Screen Shot 2023-05-25 at 10 04 37 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/a4212d01-30fa-48d8-8b37-d08ea9b2b1af)
 
 * To push a unit of blood via bloodtype, run
 * ```http://localhost:8080/pushBlood```
 * Follow example below and enter any bloodtype that was previously randomly generated in donation center schedules
-* ![Screen Shot 2023-05-25 at 10 05 45 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/009e1744-995e-4074-92e8-7295909cfbbf)
+![Screen Shot 2023-05-25 at 10 05 45 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/009e1744-995e-4074-92e8-7295909cfbbf)
 
+* To see the inventory of blood units in the blood bank, run
+* ```http://localhost:8081/bank```
 
+* To clear the inventory of blood units in the blood bank, run
+* ```http://localhost:8081/clearbank```
+
+* To pull all blood units to the hospital via bloodtypes available in the blood bank, run
+* ```http://localhost:8082/pullBlood```
+* Follow example below and enter any bloodtype in which that blood unit(s) was previously pushed to blood bank
+* ![Screen Shot 2023-05-25 at 10 13 22 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/0b6a2cd0-c883-48f4-9cb5-784503445b4c)
+
+* To see the inventory of blood units in the hospital, run
+* ```http://localhost:8082/hospital```
+
+### How to Run Application on Kubernetes:
+* Clone github repository
+
+* ```cd donation_center```
+* ```./gradlew build```
+* ```./gradlew bootRun```
+* ```docker build -t {Docker Desktop Username}/donation_center:v1 .```
+* ```docker push {Docker Desktop Username}/donation_center:v1```
+
+* ```cd blood_bank```
+* ```./gradlew build```
+* ```./gradlew bootRun```
+* ```docker build -t {Docker Desktop Username}/blood_bank:v1 .```
+* ```docker push {Docker Desktop Username}/blood_bank:v1```
+
+* ```cd hospital```
+* ```./gradlew build```
+* ```./gradlew bootRun```
+* ```docker build -t {Docker Desktop Username}/hospital:v1 .```
+* ```docker push {Docker Desktop Username}/hospital:v1```
+
+* ```cd k8s```
+* ```kubectl apply -f configmap.yaml```
+* ```kubectl apply -f donation_center.yaml```
+* ```kubectl apply -f blood_bank.yaml```
+* ```kubectl apply -f hospital.yaml```
+
+* To check status of pods, run
+* ```kubectl get pods```
+
+* To get info on services, run
+* ```kubectl get services --all-namespaces -o wide```
+![Screen Shot 2023-05-25 at 10 24 40 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/c86f408c-28fa-44a0-9b6b-ccd7392a7475)
+
+* To test all REST calls, implement the same instructions as above for localhost on Postman
+* However, replace port 8080 with 31000
+* Replace port 8081 with 31001
+* Replace port 8082 with 31002
+* Follow the examples below with the same REST calls
+![Screen Shot 2023-05-25 at 10 25 58 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/d35020f0-c7e8-4742-95c0-05b422ce509c)
+![Screen Shot 2023-05-25 at 10 26 21 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/181f7c98-7578-4c74-8251-998cbdc55d28)
+![Screen Shot 2023-05-25 at 10 26 53 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/f8868f84-be4f-4266-80dd-d491b4419e81)
