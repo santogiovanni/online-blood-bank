@@ -42,6 +42,7 @@ Postman will be used to show intra microservice communication (blood pushes and 
 * Once donation_center microservice is up and running, run
 * ```http://localhost:8080/blood-appts```
 * in either localhost browser or on Postman 
+
 ![Screen Shot 2023-05-25 at 9 57 12 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/6a57068c-13e7-4927-b2e9-83de9ea0cfa5)
 
 * To get a specific blood schedule via id, run with id as any integer
