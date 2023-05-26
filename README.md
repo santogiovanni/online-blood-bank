@@ -43,51 +43,58 @@ Postman will be used to show intra microservice communication (blood pushes and 
 * ```./gradlew bootRun```
 
 * Once donation_center microservice is up and running, run
-* ```http://localhost:8080/blood-appts```
+* ```http://localhost:8080/blood-appts``` (GET call in Postman)
 * in either localhost browser or on Postman 
 
 ![Screen Shot 2023-05-25 at 9 57 12 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/6a57068c-13e7-4927-b2e9-83de9ea0cfa5)
 
-* To get a specific blood schedule via id, run with id as any integer
+* To get a specific blood schedule via id, run with id as any integer (GET call in Postman)
 * ```http://localhost:8080/blood-appts/{id}```
 
-* To get all the blood schedules sorted by bloodtype, run
+* To get all the blood schedules sorted by bloodtype, run (GET call in Postman)
 * ```http://localhost:8080/blood-schedules/{bloodtype}```
 
-* To remove a specific appointment via id, run
+* To remove a specific appointment via id, run (DELETE call in Postman)
 * ```http://localhost:8080/remove-appt/{id}```
 
-* To simulatenously create an appointment and push the blood unit, run
+* To create a new donation appointment, run (POST call in Postman)
+* ```http://localhost:8080/create-appt```
+* Follow example below to manually insert raw JSON data
+
+* ![Screen Shot 2023-05-25 at 10 41 52 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/bb941542-690a-497c-ba43-9299265325d5)
+
+
+* To simulatenously create an appointment and push the blood unit, run (POST call in Postman)
 * ```http://localhost:8080/create-appt-and-push-blood```
 * Follow example below to manually insert raw JSON data
 
 ![Screen Shot 2023-05-25 at 10 02 09 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/fbf69914-d5be-4e68-9df4-5a466393c0c8)
 
-* To update an existing specific appointment via id, run
+* To update an existing specific appointment via id, run (PUT call in Postman)
 * ```http://localhost:8080/update-appt/{id}```
 * Follow example below to manually insert raw JSON data
 
 ![Screen Shot 2023-05-25 at 10 04 37 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/a4212d01-30fa-48d8-8b37-d08ea9b2b1af)
 
-* To push a unit of blood via bloodtype, run
+* To push a unit of blood via bloodtype, run (POST call in Postman)
 * ```http://localhost:8080/pushBlood```
 * Follow example below and enter any bloodtype that was previously randomly generated in donation center schedules
 
 ![Screen Shot 2023-05-25 at 10 05 45 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/009e1744-995e-4074-92e8-7295909cfbbf)
 
-* To see the inventory of blood units in the blood bank, run
+* To see the inventory of blood units in the blood bank, run (GET call in Postman)
 * ```http://localhost:8081/bank```
 
-* To clear the inventory of blood units in the blood bank, run
+* To clear the inventory of blood units in the blood bank, run (DELETE call in Postman)
 * ```http://localhost:8081/clearbank```
 
-* To pull all blood units to the hospital via bloodtypes available in the blood bank, run
+* To pull all blood units to the hospital via bloodtypes available in the blood bank, run (DELETE call in Postman)
 * ```http://localhost:8082/pullBlood```
 * Follow example below and enter any bloodtype in which that blood unit(s) was previously pushed to blood bank
 
 * ![Screen Shot 2023-05-25 at 10 13 22 PM](https://github.com/santogiovanni/online-blood-bank/assets/106194360/0b6a2cd0-c883-48f4-9cb5-784503445b4c)
 
-* To see the inventory of blood units in the hospital, run
+* To see the inventory of blood units in the hospital, run (GET call in Postman)
 * ```http://localhost:8082/hospital```
 
 ### How to Run Application on Kubernetes:
