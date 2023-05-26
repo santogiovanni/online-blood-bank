@@ -29,7 +29,8 @@ This cloud-based application will serve as a repository for different patient bl
 Postman will be used to show intra microservice communication (blood pushes and pulls) and will demonstrate use of approved and rejected transactions between the donation center and blood bank (blood push), as well as between the hospital and blood bank (blood pull).
 
 ### How to Run Application on Localhost:
-* Clone github repository
+* Clone github repository by running in terminal
+* ```git clone https://github.com/santogiovanni/online-blood-bank.git```
 
 * ```cd donation_center```
 * ```cd blood_bank```
