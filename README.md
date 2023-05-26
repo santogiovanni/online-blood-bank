@@ -30,7 +30,7 @@ Postman will be used to show intra microservice communication (blood pushes and 
 
 ### How to Run Application on Localhost:
 * Clone github repository by running in terminal
-* ```git clone https://github.com/santogiovanni/online-blood-bank.git```
+```git clone https://github.com/santogiovanni/online-blood-bank.git```
 
 * ```cd donation_center```
 * ```cd blood_bank```
@@ -83,7 +83,8 @@ Postman will be used to show intra microservice communication (blood pushes and 
 * ```http://localhost:8082/hospital```
 
 ### How to Run Application on Kubernetes:
-* Clone github repository
+* Clone github repository by running in terminal
+* ```git clone https://github.com/santogiovanni/online-blood-bank.git```
 
 * ```cd donation_center```
 * ```./gradlew build```
